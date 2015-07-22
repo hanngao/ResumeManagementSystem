@@ -1,0 +1,120 @@
+<include file="Public:header" />
+<div class="widget-content">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title"><span class="icon"><i class="icon-bookmark"></i></span>
+                    <h5>{$data.user.name}</h5>
+                </div>
+                <table class="table table-bordered data-table">
+                    <tbody>
+                        <tr>
+                            <td class="msg-invoice">{$data.user.workyear} | {$data.user.sex} | {$data.user.age}岁（{$data.user.birthday}） <br />
+                                {$data.user.mobile} | {$data.user.email} <br />
+                                {$data.user.jobstatus} | {$data.user.location} <br />
+                                {$data.user.degrees} | {$data.user.major}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="widget-box">
+                <div class="widget-title"><span class="icon"><i class="icon-bookmark"></i></span>
+                    <h5>求职意向</h5>
+                </div>
+                <table class="table table-bordered table-invoice-full">
+                    <tbody>
+                        <tr>
+                            <td class="msg-invoice">目标地点：{$data.intention.jobarea} | 期望薪水：{$data.intention.salary}/月</td>
+                        </tr>
+                        <tr>
+                            <td class="msg-invoice">目标职能：<volist name="data.function" id="vo">{$vo.function_name}&nbsp;&nbsp;</volist></td>
+                        </tr>
+                        <tr>
+                            <td class="msg-invoice">关键词：<volist name="data.keyword" id="vo">{$vo.keyword}&nbsp;&nbsp</volist></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="widget-box">
+                <div class="widget-title"><span class="icon"><i class="icon-bookmark"></i></span>
+                    <h5>自我介绍</h5>
+                </div>
+                <table class="table table-bordered table-invoice-full">
+                    <tbody>
+                        <tr>
+                            <td class="msg-invoice">{$data.intro}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="widget-box">
+                <div class="widget-title"><span class="icon"><i class="icon-bookmark"></i></span>
+                    <h5>工作经验</h5>
+                </div>
+                <table class="table table-bordered table-invoice-full">
+                    <volist name="data.job" id="vo">
+                        <tbody>
+                            <tr>
+                                <td class="msg-invoice" colspan="4" style="background:#CCC;"></td>
+                            </tr>
+                            <tr>
+                                <td class="msg-invoice" width="50">时间</td>
+                                <td class="msg-invoice" colspan="3">{$vo.starttime|formatDate} 至 {$vo.endtime|formatDate}</td>
+                            </tr>
+                            <tr>
+                                <td class="msg-invoice" width="50">公司</td>
+                                <td class="msg-invoice">{$vo.company}</td>
+                                <td class="msg-invoice" width="50">行业</td>
+                                <td class="msg-invoice">{$vo.industry}</td>
+                            </tr>
+                            <tr>
+                                <td class="msg-invoice" width="50">部门</td>
+                                <td class="msg-invoice">{$vo.division}</td>
+                                <td class="msg-invoice" width="50">职位</td>
+                                <td class="msg-invoice">{$vo.job}</td>
+                            </tr>
+                            <tr>
+                                <td class="msg-invoice" width="50">职位描述</td>
+                                <td class="msg-invoice" colspan="3">{$vo.responsibility}</td>
+                            </tr>
+                        </tbody>
+                    </volist>
+                </table>
+            </div>
+            <div class="widget-box">
+                <div class="widget-title"><span class="icon"><i class="icon-bookmark"></i></span>
+                    <h5>项目经验</h5>
+                </div>
+                <table class="table table-bordered table-invoice-full">
+                    <volist name="data.project" id="vo">
+                        <tbody>
+                            <tr>
+                                <td class="msg-invoice" colspan="4" style="background:#CCC;"></td>
+                            </tr>
+                            <tr>
+                                <td class="msg-invoice" width="50">时间</td>
+                                <td class="msg-invoice">{$vo.starttime|formatDate} 至 {$vo.endtime|formatDate}</td>
+                            </tr>
+                            <tr>
+                                <td class="msg-invoice" width="50">项目名称</td>
+                                <td class="msg-invoice">{$vo.projectname}</td>
+                            </tr>
+                            <tr>
+                                <td class="msg-invoice" width="50">项目描述</td>
+                                <td class="msg-invoice">{$vo.description}</td>
+                            </tr>
+                            <tr>
+                                <td class="msg-invoice" width="50">责任描述</td>
+                                <td class="msg-invoice">{$vo.responsibility}</td>
+                            </tr>
+                        </tbody>
+                    </volist>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" /> 
+<script type="text/javascript">
+$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
+</script>

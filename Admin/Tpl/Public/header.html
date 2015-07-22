@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>简历管理系统V1.0</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/bootstrap.min.css" />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/uniform.css" />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/select2.css" />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/matrix-style.css" />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/matrix-media.css" />
+<link rel="stylesheet" href="__PUBLIC__/admin/font-awesome/css/font-awesome.css"  />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/jquery.gritter.css" />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/datepicker.css" />
+<script type="text/javascript">
+var Domain = '{$doMain}';
+</script>
+</head>
+<body>
+<div id="header">
+	<h1><a href="{:U('Index/index')}">Matrix Admin</a></h1>
+</div>
+<div id="user-nav" class="navbar navbar-inverse">
+	<ul class="nav">
+		<li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i> <span class="text">Welcome {$adminName}</span><b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="{:U('Index/updatePassword')}"><i class="icon-key"></i>修改密码</a></li>
+				<li class="divider"></li>
+				<li><a href="{:U('Access/logout')}"><i class="icon-share-alt"></i>退出</a></li>
+			</ul>
+		</li>
+		<li><a title="退出" href="{:U('Access/logout')}"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+	</ul>
+</div>
+<div id="sidebar">
+	<ul>
+		<volist name="menu" id="vo">
+        <li id="menu_{$vo['module']}" class="submenu <if condition=" $moudleName eq $vo['module']">active open</if>">
+			<a href="#"><i class="icon icon-plus"></i>&nbsp;<span>{$vo['name']}</span></a>
+			<ul style="<if condition=" $moudleName eq $vo['module']">display:block;</if>">
+				<volist name="vo['child']" id="v">
+				<li class="<if condition=" $v['cur'] eq 1 ">active</if>"><a href="{$v['url']}"><i class="icon icon-minus"></i>&nbsp;{$v['name']}</a></li>
+				</volist>
+			</ul>
+		</li>		
+		</volist>
+	</ul>
+</div>
+<div id="content">
+<div id="content-header">
+    <div id="breadcrumb"> 
+	<a href="{:U('Index/index')}" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a>
+	<if condition=" $nav neq '' && $navUrl neq '' ">
+	<a href="{$navUrl}">{$nav}</a>
+	</if>
+	<a href="#" class="current">{$title}</a>
+	</div>
+</div>
+

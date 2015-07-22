@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>登录 - 简历管理系统V1.0</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/bootstrap.min.css" />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="__PUBLIC__/admin/css/matrix-login.css" />
+<link rel="stylesheet" href="__PUBLIC__/admin/font-awesome/css/font-awesome.css"  />
+</head>
+<body>
+<div id="loginbox">
+    <form id="loginform" class="form-vertical" action="{:U('Access/login')}" method="post">
+        <div class="control-group normal_text">
+            <h3><img src="__PUBLIC__/admin/img/logo.png" alt="Logo" /></h3>
+        </div>
+        <p class="normal_text">登录</p>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box"> <span class="add-on bg_lg"><i class="icon-user"></i></span>
+                    <input type="text" name="username" id="username" placeholder="用户名" />
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box"> <span class="add-on bg_ly"><i class="icon-lock"></i></span>
+                    <input type="password" name="password" id="password" placeholder="密码" />
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+			<span class="pull-left"><a href="#" onClick="alert('请联系管理员。');" class="flip-link btn btn-info">忘记密码?</a></span>
+            <span class="pull-right"><input type="submit" class="btn btn-success" value="登录"/></span>
+        </div>
+    </form>
+</div>
+<script src="__PUBLIC__/admin/js/jquery.min.js"></script>
+<script type="text/javascript">
+$('#loginform').submit( function(){
+	$.post("{:U('Access/login')}",{username:$('#username').val(),password:$('#password').val()},
+	function(result){
+		if(result.status == 0){
+			alert(result.info);
+		}else{
+			window.location = "{:U('Index/index')}";
+		}
+	},'json');
+	return false;
+});
+</script>
+</body>
+</html>

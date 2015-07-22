@@ -1,0 +1,96 @@
+<include file="Public:header" />
+<div class="container-fluid">
+    <div class="widget-box">
+        <div class="widget-title bg_ly <notempty name="userList">collapsed</notempty>" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="icon-chevron-down"></i></span>
+            <h5>搜索</h5>
+        </div>
+        <div class="widget-content nopadding  <empty name="userList">in</empty> collapse" id="collapseG2" style="<empty name="userList">height: auto;<else />height: 0px;</empty>">
+            <form method="post" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">关键词:</label>
+                    <div class="controls">
+                        <input type="text" class="span2" name="keyword" placeholder="关键词" value="{$id_51job}"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">51jobID:</label>
+                    <div class="controls">
+                        <input type="text" class="span2" name="id_51job" placeholder="51jobID" value="{$id_51job}" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">姓名:</label>
+                    <div class="controls">
+                        <input type="text" class="span2" name="name" placeholder="姓名" value="{$name}" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">手机号码:</label>
+                    <div class="controls">
+                        <input type="text" class="span2" name="mobile" placeholder="手机号码" value="{$mobile}" />
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" value="搜索" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+	<notempty name="userList">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                        <h5>{$title}</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>51jobID</th>
+                                    <th>姓名</th>
+                                    <th>性别</th>
+                                    <th>工作年限</th>
+                                    <th>手机号码</th>
+                                    <th>Email</th>
+                                    <th>居住地</th>
+                                    <th>学历</th>
+                                    <th>专业</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <volist name="userList" id="vo">
+                                    <tr>
+                                        <td>{$vo.uid}</td>
+                                        <td>{$vo.id_51job}</td>
+                                        <td>{$vo.name}({$vo.age}岁)</td>
+                                        <td>{$vo.sex}</td>
+                                        <td>{$vo.workyear}</td>
+                                        <td>{$vo.mobile}</td>
+                                        <td>{$vo.email}</td>
+                                        <td>{$vo.location}</td>
+                                        <td>{$vo.degrees}</td>
+                                        <td>{$vo.major}</td>
+                                        <td style="text-align:center;">
+                                        <a target="_blank" href="{$domain}{$vo.resumepath}"><i class="icon-download-alt"></i>&nbsp;下载</a> 
+                                        <a target="_blank" href="{:U('Resume/view',array('uid' => $vo['uid']))}"><i class="icon-eye-open"></i>&nbsp;查看</a> 
+                                        <!--                                        
+										<a target="_blank" href="{:U('Resume/edit',array('uid' => $vo['uid']))}"><i class="icon-pencil"></i>&nbsp;修改</a> 
+                                        -->                                        
+										<a href="{:U('Resume/del',array('uid' => $vo['uid']))}" onclick="if(confirm('确定删除?')){return true;}else{return false;}"><i class="icon-trash"></i>&nbsp;删除</a></td>
+                                    </tr>
+                                </volist>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </notempty>
+</div>
+<include file="Public:footer" /> 
+<script type="text/javascript">
+$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
+</script>
